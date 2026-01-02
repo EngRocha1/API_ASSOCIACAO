@@ -2,7 +2,6 @@ package com.associacao.api.v1.InformacoesAssentamento.service;
 
 import com.associacao.api.v1.InformacoesAssentamento.domain.InformacoesAssentamento;
 import com.associacao.api.v1.InformacoesAssentamento.domain.Listas.*;
-import com.example.work3.v1.InformacoesAssentamento.domain.Listas.*;
 import com.associacao.api.v1.InformacoesAssentamento.repository.InformacoesAssentamentoRepository;
 import com.associacao.api.v1.Servidor.Service.ServidorService;
 import com.associacao.api.v1.Servidor.domain.Servidor;

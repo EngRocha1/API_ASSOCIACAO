@@ -1,6 +1,5 @@
 package com.associacao.api.v1.InformacoesEscolares.domain;
 import com.associacao.api.v1.InformacoesEscolares.domain.Listas.*;
-import com.example.work3.v1.InformacoesEscolares.domain.Listas.*;
 import com.associacao.api.v1.Servidor.domain.Servidor;
 import com.associacao.api.v1.SuperClasses.classes.Listagem;
 import jakarta.persistence.*;

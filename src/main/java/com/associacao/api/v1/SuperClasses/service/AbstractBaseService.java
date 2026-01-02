@@ -1,7 +1,6 @@
 package com.associacao.api.v1.SuperClasses.service;
 
 import com.associacao.api.Exceptions.*;
-import com.example.work3.Exceptions.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;

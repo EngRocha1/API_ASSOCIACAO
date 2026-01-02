@@ -8,7 +8,6 @@ import com.associacao.api.v1.Afastamentos.domain.Listas.Suspensao;
 import com.associacao.api.v1.Afastamentos.domain.Listas.TipoAfastamento;
 import com.associacao.api.v1.Afastamentos.dto.AfastamentosResponseDTO;
 import com.associacao.api.v1.Afastamentos.service.*;
-import com.example.work3.v1.Afastamentos.service.*;
 import com.associacao.api.v1.Servidor.Service.ServidorService;
 import com.associacao.api.v1.Servidor.domain.Servidor;
 import com.associacao.api.v1.SuperClasses.controller.AbstractController;

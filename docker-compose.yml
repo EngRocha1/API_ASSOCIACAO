@@ -18,8 +18,8 @@ services:
 
   app:
     build: .
-    image: work3-app:v2.12
-    container_name: work3-app
+    image: associacao-app:v1.0
+    container_name: associacao-app
     environment:
       - DB_URL=jdbc:mysql://mysql-service:3306/M4r14DB_4dm
       - DB_USER=M4r14DB_4dm

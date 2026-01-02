@@ -1,6 +1,5 @@
 package com.associacao.api.v1.SuperClasses.controller;
 import com.associacao.api.Exceptions.*;
-import com.example.work3.Exceptions.*;
 import com.associacao.api.v1.SuperClasses.dto.BaseDTO;
 import com.associacao.api.v1.SuperClasses.classes.Auditable;
 import com.associacao.api.v1.SuperClasses.interfaceOpenAPI.InterfaceOpenAPI;

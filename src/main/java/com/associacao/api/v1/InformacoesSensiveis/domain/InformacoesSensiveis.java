@@ -1,7 +1,6 @@
 package com.associacao.api.v1.InformacoesSensiveis.domain;
 
 import com.associacao.api.v1.InformacoesSensiveis.domain.Listas.*;
-import com.example.work3.v1.InformacoesSensiveis.domain.Listas.*;
 import com.associacao.api.v1.Servidor.domain.Servidor;
 import com.associacao.api.v1.SuperClasses.classes.Auditable;
 import jakarta.persistence.*;
