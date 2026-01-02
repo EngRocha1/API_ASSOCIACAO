@@ -40,7 +40,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.example.work3.Work3Application</mainClass>
+					<mainClass>com.associacao.api.Work3Application</mainClass>
 				</configuration>
 				<executions>
 					<execution>
