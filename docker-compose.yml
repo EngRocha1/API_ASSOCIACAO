@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 0m4r14c0ns3b1d4s3mp3c4d0
+      MYSQL_DATABASE: M4r14DB_4dm
+      MYSQL_USER: M4r14DB_4dm
+      MYSQL_PASSWORD: 0m4r14c0ns3b1d4s3mp3c4d0
+    volumes:
+      - dbwork3_volume_mysql:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+       MYSQL_ROOT_PASSWORD: 0m4r14c0ns3b1d4s3mp3c4d0
+
+  app:
+    build: .
+    image: work3-app:v2.12
+    container_name: work3-app
+    environment:
+      - DB_URL=jdbc:mysql://mysql-service:3306/M4r14DB_4dm
+      - DB_USER=M4r14DB_4dm
+      - DB_PASSWORD=0m4r14c0ns3b1d4s3mp3c4d0
+
+volumes:
+  dbwork3_volume_mysql:

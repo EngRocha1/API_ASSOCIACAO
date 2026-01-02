@@ -1,0 +1,83 @@
+# deployment-ingress.yaml
+# Define as regras de Ingress para os serviços da aplicação e
+# expõe o Nginx Ingress Controller externamente usando um Service do tipo NodePort.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: unified-ingress
+  namespace: work3-app
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - www.work3.com.br
+      secretName: www-work3-com-br-tls-secret
+  rules:
+    - host: www.work3.com.br
+      http:
+        paths:
+          - path: /work3/
+            pathType: Prefix
+            backend:
+              service:
+                name: work3-service
+                port:
+                  number: 8080
+          - path: /phpmyadmin/
+            pathType: Prefix
+            backend:
+              service:
+                name: phpmyadmin-service
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: work3-front-service
+                port:
+                  number: 3000
+          - path: /dashboard
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-dashboard-proxy
+                port:
+                  number: 8443
+                #namespace: kubernetes-dashboard
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-http
+  namespace: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 30080 # (30000-32767)
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-https
+  namespace: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      nodePort: 30443
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
