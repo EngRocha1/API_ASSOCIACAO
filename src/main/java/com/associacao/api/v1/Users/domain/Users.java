@@ -3,6 +3,7 @@ package com.associacao.api.v1.Users.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import com.associacao.api.v1.SuperClasses.classes.Auditable;
 
 @Table(name = "users")
 @Entity(name = "users")
+@Audited
 @Getter
 @Setter
 @AllArgsConstructor

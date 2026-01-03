@@ -13,6 +13,7 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Entity(name="servidor")
 @Table(name="servidor")
+@Audited
 @Getter
 @Setter
 @AllArgsConstructor
