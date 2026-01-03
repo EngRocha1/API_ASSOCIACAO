@@ -14,12 +14,15 @@ import com.associacao.api.v1.SuperClasses.classes.Auditable;
 
 @Table(name = "users")
 @Entity(name = "users")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @SQLRestriction(value = "ativo = true")
 public class Users extends Auditable implements UserDetails {
+
+    @EqualsAndHashCode.Include
     @NotBlank(message = "Login não pode ser vazio")
     private String login;
 

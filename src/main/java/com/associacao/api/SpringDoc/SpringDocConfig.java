@@ -35,7 +35,7 @@ public class SpringDocConfig {
                                 "#Selecionar o banco de dados que você criou: \n<br>" +
                                 "USE M4r14DB_4dm;\n<br><br>" +
                                 "\n" +
-                                "#Inserir Usuário root no banco de dados com senha padrão root123@: \n<br>" +
+                                "#Inserir Usuário root no banco de dados com senha padrão root123@, após a inserção atualize no primeiro uso do sistema: \n<br>" +
                                 "\n" +
                                 "INSERT INTO `users` (`id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `ativo`, `login`, `password`, `role`, `verify_code`, `secret`) VALUES\n" +
                                 "(UUID(), 'root', CURRENT_TIMESTAMP, 'root', CURRENT_TIMESTAMP, b'1', 'root', '$2a$10$O1x8PmQOdIy5Vq1vBwtNTum3OrMlJevhsOpaj9dLKN2xvp7wGEqjC', 0, 0,NULL);\n" +

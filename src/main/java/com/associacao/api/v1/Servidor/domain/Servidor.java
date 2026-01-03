@@ -20,14 +20,16 @@ import java.util.List;
 
 @Entity(name="servidor")
 @Table(name="servidor")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @SQLRestriction(value = "ativo = true")
 public class Servidor extends Auditable  {
-
+    @EqualsAndHashCode.Include
     private String name;
+    @EqualsAndHashCode.Include
     private String cpf;
     private LocalDate dataNascimento;
     private boolean ativo;
