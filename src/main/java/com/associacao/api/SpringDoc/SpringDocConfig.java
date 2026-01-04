@@ -51,6 +51,7 @@ public class SpringDocConfig {
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("login")
+                .displayName("1 - Acesso Inicial")
                 .pathsToMatch("/auth/login")
                 .build();
     }
@@ -58,7 +59,8 @@ public class SpringDocConfig {
     @Bean
     public GroupedOpenApi operationalApi() {
         return GroupedOpenApi.builder()
-                .group("2-Operacional-Geral")
+                .group("gestao")
+                .displayName("2 - Gestão Operacional")
                 .pathsToMatch(
                         "/servidor/**",
                         "/file/**",
@@ -73,7 +75,27 @@ public class SpringDocConfig {
                         "/lotacao/**",
                         "/orgaogov/**",
                         "/simbolo/**",
-                        "/vinculo/**"
+                        "/vinculo/**",
+
+                        // --- Módulos Adicionais (Preservados) ---
+                        "/treinamentos/**",
+                        "/tipotreinamentos/**",
+                        "/treinamentocurso/**",
+                        "/grupo-do-curso/**",
+                        "/afastamentos/**",
+                        "/tipoafastamento/**",
+                        "/fluxoaprovacao/**",
+                        "/suspensao/**",
+                        "/cid/**",
+                        "/informacoesescolares/**",
+                        "/curso/**",
+                        "/formacaoacademica/**",
+                        "/instituicaoensino/**",
+                        "/nivelensino/**",
+                        "/periodododia/**",
+                        "/semestrecurso/**",
+                        "/statusformacao/**",
+                        "/tipoinstituicao/**"
                 )
                 .build();
     }
@@ -81,7 +103,8 @@ public class SpringDocConfig {
     @Bean
     public GroupedOpenApi adminApi() {
         return GroupedOpenApi.builder()
-                .group("3-Administrativo-Auditoria")
+                .group("auditoria")
+                .displayName("3 - Auditoria e Admin")
                 .pathsToMatch(
                         "/auth/register",
                         "/auth/list",

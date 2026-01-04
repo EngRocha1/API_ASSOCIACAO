@@ -34,28 +34,14 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/auth/list").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/auth/update/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/auth/delete/**").hasRole("ADMIN")
-
-                        //.requestMatchers(HttpMethod.GET, "/informacoessensiveis/byServidorId/**").authenticated()
-//                        PARA USO COM INGRESS E PATCH NO CLUSTER
-//                        .requestMatchers("/webjars/**").permitAll()
-//                        .requestMatchers("/swagger-ui/**").permitAll()
-//                        .requestMatchers("/*/swagger-initializer.js").permitAll()
-//                        .requestMatchers("/v3/api-docs/**").permitAll()
-//                        .requestMatchers("/work3/webjars/**").permitAll()
-//                        .requestMatchers("/work3/swagger-ui/**").permitAll()
-//                        .requestMatchers("/work3/*/swagger-initializer.js").permitAll()
-//                        .requestMatchers("/work3/v3/api-docs/**").permitAll()
-//                        .requestMatchers("/swagger-ui.html").permitAll()
-//                        .requestMatchers("/work3/swagger-ui.html").permitAll()
-
-                                .requestMatchers(
+                        .requestMatchers(
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**",
                                         "/swagger-ui.html",
                                         "/webjars/**",
-                                        "/**/swagger-initializer.js"
+                                        "/**/swagger-initializer.js",
+                                        "/v3/api-docs/swagger-config"
                                 ).permitAll()
-
                         .requestMatchers(HttpMethod.GET, "/protected/route").authenticated()
                         .anyRequest().authenticated()
                 )
@@ -67,10 +53,11 @@ public class SecurityConfigurations {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-    @Bean
-    public ForwardedHeaderFilter forwardedHeaderFilter() {
-        return new ForwardedHeaderFilter();
-    }
+//    @Bean
+//    public ForwardedHeaderFilter forwardedHeaderFilter() {
+//        return new ForwardedHeaderFilter();
+//    } RETIRADO POIS O PROPERTIES JÁ TEM UMA PROPRIEDADE NATIVE FUNCIONANDO PODE GERAR REDUNDÂNCIA
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
