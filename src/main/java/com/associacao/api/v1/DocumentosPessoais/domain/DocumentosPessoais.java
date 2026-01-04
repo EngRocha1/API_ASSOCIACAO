@@ -11,6 +11,11 @@ import org.hibernate.envers.NotAudited;
 
 import java.time.LocalDate;
 
+/**
+ * Entidade que representa os documentos pessoais de um servidor.
+ * Armazena dados cadastrais e anexos digitais (RG, CPF, Título, CTPS, PIS/NIT e Reservista).
+ * Esta classe é auditada para manter o histórico de alterações e documentos enviados.
+ */
 @Entity(name = "documentospessoais")
 @Table(name = "documentospessoais")
 @Audited
@@ -31,86 +36,119 @@ public class DocumentosPessoais extends Listagem {
     @JoinColumn(name = "tipodedocumento_id")
     private TipoDeDocumento tipoDeDocumento;
 
+    /** Dados do Registro Geral (RG) */
     @Column(name = "numero_rg")
     private String numeroRg;
-
-    @Column(name = "naturalidade")
+    private String filenameRg;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataRg;
     private String naturalidade;
-
-    @Column(name = "nacionalidade")
     private String nacionalidade;
-
-    @Column(name = "validade_rg")
     private LocalDate validadeRg;
-
-    @Column(name = "filiacao_pai_rg")
     private String filiacaoPaiRg;
-
-    @Column(name = "filiacao_mae_rg")
     private String filiacaoMaeRg;
-
-    @Column(name = "data_emissao_rg")
     private LocalDate dataEmissaoRg;
-
-    @Column(name = "orgao_expedidor_rg")
     private String orgaoExpedidorRg;
 
+    /** Dados do Cadastro de Pessoa Física (CPF) */
     @Column(name = "numero_cpf")
     private String numeroCpf;
-
-    @Column(name = "situacao_cadastral_cpf")
+    private String filenameCpf;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataCpf;
     private String situacaoCadastralCpf;
-
-    @Column(name = "data_inscricao_cpf")
     private LocalDate dataInscricaoCpf;
-
-    @Column(name = "digito_verificador_cpf")
     private String digitoVerificadorCpf;
-
-    @Column(name = "data_emissao_cpf")
     private LocalDate dataEmissaoCpf;
 
+    /** Dados do Título de Eleitor */
     @Column(name = "numero_titulo_eleitor")
     private String numeroTituloEleitor;
-
-    @Column(name = "data_emissao_titulo")
+    private String filenameTitulo;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataTitulo;
     private LocalDate dataEmissaoTitulo;
-
-    @Column(name = "zona_titulo")
     private String zonaTitulo;
-
-    @Column(name = "secao_titulo")
     private String secaoTitulo;
 
+    /** Dados da Carteira de Trabalho (CTPS) */
     @Column(name = "numero_ctps")
     private String numeroCtps;
-
-    @Column(name = "data_emissao_ctps")
+    private String filenameCtps;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataCtps;
     private LocalDate dataEmissaoCtps;
-
-    @Column(name = "orgao_expedidor_ctps")
     private String orgaoExpedidorCtps;
 
-    @Column(name = "numero_pis_nis")
-    private String numeroPisNis;
+    /** Dados de Identificação Social (PIS/PASEP, NIT ou NIS) */
+    @Column(name = "numero_pispaspet_nis_nit")
+    private String numeroPisNisNit;
+    @Column(name = "data_cadastramento_pis")
+    private LocalDate dataCadastramentoPis;
+    private String filenamePis;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataPis;
 
+    /** Dados do Certificado de Reservista */
     @Column(name = "numero_reservista")
     private String numeroReservista;
-
-    @Column(name = "data_emissao_reservista")
+    private String filenameReservista;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataReservista;
     private LocalDate dataEmissaoReservista;
-
-    @Column(name = "regiao_militar_reservista")
     private String regiaoMilitarReservista;
 
-    @Column(name = "ativo")
+    /** Dados da CNH (Carteira Nacional de Habilitação) */
+    @Column(name = "numero_cnh")
+    private String numeroCnh;
+    private String categoriaCnh;
+    private LocalDate validadeCnh;
+    private String filenameCnh;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataCnh;
+
+    /** Dados de Estado Civil (Nascimento ou Casamento) */
+    private String estadoCivil;
+    private String filenameCertidaoCivil;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataCertidaoCivil;
+
+    /** Comprovante de Residência */
+    private String tipoResidencia;
+    private String filenameComprovanteResidencia;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataComprovanteResidencia;
+
+    /** Certidão de Quitação Eleitoral */
+    private String filenameQuitacaoEleitoral;
+    @Lob @Column(columnDefinition = "LONGBLOB")
+    private byte[] fileDataQuitacaoEleitoral;
+
     private boolean ativo;
 
-    public DocumentosPessoais(Servidor servidor, TipoDeDocumento tipoDeDocumento, String numeroRg, String naturalidade, String nacionalidade, LocalDate validadeRg, String filiacaoPaiRg, String filiacaoMaeRg, LocalDate dataEmissaoRg, String orgaoExpedidorRg, String numeroCpf, String situacaoCadastralCpf, LocalDate dataInscricaoCpf, String digitoVerificadorCpf, LocalDate dataEmissaoCpf, String numeroTituloEleitor, LocalDate dataEmissaoTitulo, String zonaTitulo, String secaoTitulo, String numeroCtps, LocalDate dataEmissaoCtps, String orgaoExpedidorCtps, String numeroPisNis, String numeroReservista, LocalDate dataEmissaoReservista, String regiaoMilitarReservista, boolean ativo) {
+    /**
+     * Construtor completo para Documentos Pessoais padrão Brasil.
+     * Inclui campos de dados e anexos para RG, CPF, Título, CTPS, PIS, Reservista,
+     * CNH, Certidões, Comprovante de Residência e Quitação Eleitoral.
+     */
+    public DocumentosPessoais(Servidor servidor, TipoDeDocumento tipoDeDocumento,
+                              String numeroRg, String filenameRg, byte[] fileDataRg, String naturalidade, String nacionalidade, LocalDate validadeRg, String filiacaoPaiRg, String filiacaoMaeRg, LocalDate dataEmissaoRg, String orgaoExpedidorRg,
+                              String numeroCpf, String filenameCpf, byte[] fileDataCpf, String situacaoCadastralCpf, LocalDate dataInscricaoCpf, String digitoVerificadorCpf, LocalDate dataEmissaoCpf,
+                              String numeroTituloEleitor, String filenameTitulo, byte[] fileDataTitulo, LocalDate dataEmissaoTitulo, String zonaTitulo, String secaoTitulo,
+                              String numeroCtps, String filenameCtps, byte[] fileDataCtps, LocalDate dataEmissaoCtps, String orgaoExpedidorCtps,
+                              String numeroPisNisNit, LocalDate dataCadastramentoPis, String filenamePis, byte[] fileDataPis,
+                              String numeroReservista, String filenameReservista, byte[] fileDataReservista, LocalDate dataEmissaoReservista, String regiaoMilitarReservista,
+                              String numeroCnh, String categoriaCnh, LocalDate validadeCnh, String filenameCnh, byte[] fileDataCnh,
+                              String estadoCivil, String filenameCertidaoCivil, byte[] fileDataCertidaoCivil,
+                              String tipoResidencia, String filenameComprovanteResidencia, byte[] fileDataComprovanteResidencia,
+                              String filenameQuitacaoEleitoral, byte[] fileDataQuitacaoEleitoral,
+                              boolean ativo) {
         super.setId(null);
         this.servidor = servidor;
         this.tipoDeDocumento = tipoDeDocumento;
         this.numeroRg = numeroRg;
+        this.filenameRg = filenameRg;
+        this.fileDataRg = fileDataRg;
         this.naturalidade = naturalidade;
         this.nacionalidade = nacionalidade;
         this.validadeRg = validadeRg;
@@ -119,26 +157,47 @@ public class DocumentosPessoais extends Listagem {
         this.dataEmissaoRg = dataEmissaoRg;
         this.orgaoExpedidorRg = orgaoExpedidorRg;
         this.numeroCpf = numeroCpf;
+        this.filenameCpf = filenameCpf;
+        this.fileDataCpf = fileDataCpf;
         this.situacaoCadastralCpf = situacaoCadastralCpf;
         this.dataInscricaoCpf = dataInscricaoCpf;
         this.digitoVerificadorCpf = digitoVerificadorCpf;
         this.dataEmissaoCpf = dataEmissaoCpf;
         this.numeroTituloEleitor = numeroTituloEleitor;
+        this.filenameTitulo = filenameTitulo;
+        this.fileDataTitulo = fileDataTitulo;
         this.dataEmissaoTitulo = dataEmissaoTitulo;
         this.zonaTitulo = zonaTitulo;
         this.secaoTitulo = secaoTitulo;
         this.numeroCtps = numeroCtps;
+        this.filenameCtps = filenameCtps;
+        this.fileDataCtps = fileDataCtps;
         this.dataEmissaoCtps = dataEmissaoCtps;
         this.orgaoExpedidorCtps = orgaoExpedidorCtps;
-        this.numeroPisNis = numeroPisNis;
+        this.numeroPisNisNit = numeroPisNisNit;
+        this.dataCadastramentoPis = dataCadastramentoPis;
+        this.filenamePis = filenamePis;
+        this.fileDataPis = fileDataPis;
         this.numeroReservista = numeroReservista;
+        this.filenameReservista = filenameReservista;
+        this.fileDataReservista = fileDataReservista;
         this.dataEmissaoReservista = dataEmissaoReservista;
         this.regiaoMilitarReservista = regiaoMilitarReservista;
+        this.numeroCnh = numeroCnh;
+        this.categoriaCnh = categoriaCnh;
+        this.validadeCnh = validadeCnh;
+        this.filenameCnh = filenameCnh;
+        this.fileDataCnh = fileDataCnh;
+        this.estadoCivil = estadoCivil;
+        this.filenameCertidaoCivil = filenameCertidaoCivil;
+        this.fileDataCertidaoCivil = fileDataCertidaoCivil;
+        this.tipoResidencia = tipoResidencia;
+        this.filenameComprovanteResidencia = filenameComprovanteResidencia;
+        this.fileDataComprovanteResidencia = fileDataComprovanteResidencia;
+        this.filenameQuitacaoEleitoral = filenameQuitacaoEleitoral;
+        this.fileDataQuitacaoEleitoral = fileDataQuitacaoEleitoral;
         this.ativo = ativo;
     }
 }
-
-
-
 
 
