@@ -5,10 +5,12 @@ import com.associacao.api.v1.SuperClasses.classes.Listagem;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 
 
 @Entity(name = "dadosbancarios")
 @Table(name = "dadosbancarios")
+@Audited
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

@@ -6,6 +6,7 @@ import com.associacao.api.v1.SuperClasses.classes.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 
 /**
  * Representa as informações sensíveis de um servidor, abrangendo dados de diversidade e inclusão.
@@ -14,6 +15,7 @@ import org.hibernate.annotations.SQLRestriction;
  */
 @Table(name="informacoes_sensiveis")
 @Entity(name="informacoes_sensiveis")
+@Audited
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)

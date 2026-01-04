@@ -5,11 +5,13 @@ import com.associacao.api.v1.SuperClasses.classes.Listagem;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 
 import java.time.LocalDate;
 
 @Entity(name = "informacoes_escolares")
 @Table(name = "informacoes_escolares")
+@Audited
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

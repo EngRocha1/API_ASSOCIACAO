@@ -12,11 +12,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
+
 import java.time.LocalDate;
 
 
 @Entity(name = "afastamentos")
 @Table(name = "afastamentos")
+@Audited
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

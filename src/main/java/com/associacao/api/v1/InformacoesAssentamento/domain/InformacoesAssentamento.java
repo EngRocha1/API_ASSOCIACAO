@@ -6,9 +6,11 @@ import com.associacao.api.v1.SuperClasses.classes.Listagem;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 
 @Entity(name = "informacoes_assentamento")
 @Table(name = "informacoes_assentamento")
+@Audited
 @Getter
 @Setter
 @ToString

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.envers.Audited;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ import java.util.Objects;
  */
 @Entity(name = "treinamentos")
 @Table(name = "treinamentos")
+@Audited
 @Getter
 @Setter
 @ToString
