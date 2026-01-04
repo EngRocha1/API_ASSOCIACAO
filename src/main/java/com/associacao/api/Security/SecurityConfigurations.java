@@ -36,17 +36,26 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.DELETE, "/auth/delete/**").hasRole("ADMIN")
 
                         //.requestMatchers(HttpMethod.GET, "/informacoessensiveis/byServidorId/**").authenticated()
+//                        PARA USO COM INGRESS E PATCH NO CLUSTER
+//                        .requestMatchers("/webjars/**").permitAll()
+//                        .requestMatchers("/swagger-ui/**").permitAll()
+//                        .requestMatchers("/*/swagger-initializer.js").permitAll()
+//                        .requestMatchers("/v3/api-docs/**").permitAll()
+//                        .requestMatchers("/work3/webjars/**").permitAll()
+//                        .requestMatchers("/work3/swagger-ui/**").permitAll()
+//                        .requestMatchers("/work3/*/swagger-initializer.js").permitAll()
+//                        .requestMatchers("/work3/v3/api-docs/**").permitAll()
+//                        .requestMatchers("/swagger-ui.html").permitAll()
+//                        .requestMatchers("/work3/swagger-ui.html").permitAll()
 
-                        .requestMatchers("/webjars/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()
-                        .requestMatchers("/*/swagger-initializer.js").permitAll()
-                        .requestMatchers("/v3/api-docs/**").permitAll()
-                        .requestMatchers("/work3/webjars/**").permitAll()
-                        .requestMatchers("/work3/swagger-ui/**").permitAll()
-                        .requestMatchers("/work3/*/swagger-initializer.js").permitAll()
-                        .requestMatchers("/work3/v3/api-docs/**").permitAll()
-                        .requestMatchers("/swagger-ui.html").permitAll()
-                        .requestMatchers("/work3/swagger-ui.html").permitAll()
+                                .requestMatchers(
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/webjars/**",
+                                        "/**/swagger-initializer.js"
+                                ).permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/protected/route").authenticated()
                         .anyRequest().authenticated()
                 )

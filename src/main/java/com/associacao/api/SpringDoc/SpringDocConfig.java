@@ -50,8 +50,8 @@ public class SpringDocConfig {
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
-                .group("1-Acesso-Inicial")
-                .pathsToMatch("/auth/login") // Exibe APENAS o login para visitantes
+                .group("login")
+                .pathsToMatch("/auth/login")
                 .build();
     }
 
@@ -83,8 +83,8 @@ public class SpringDocConfig {
         return GroupedOpenApi.builder()
                 .group("3-Administrativo-Auditoria")
                 .pathsToMatch(
-                        "/auth/register",  // Movido para o grupo Admin
-                        "/auth/list",      // Movido para o grupo Admin
+                        "/auth/register",
+                        "/auth/list",
                         "/v1/audit/**",
                         "/informacoessensiveis/**",
                         "/genero/**",
