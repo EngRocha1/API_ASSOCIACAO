@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.time.LocalDate;
 
@@ -23,26 +24,32 @@ public class InformacoesEscolares extends Listagem {
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "instituicao_ensino_id")
     private InstituicaoEnsino instituicaoEnsino;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "periodo_do_dia_id")
     private Periodo periodoDoDia;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "semestre_id")
     private Semestre semestre;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "formacao_academica_id")
     private FormacaoAcademica formacaoAcademica;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "status_formacao_id")
     private StatusFormacao statusFormacao;

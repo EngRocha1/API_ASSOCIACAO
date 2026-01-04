@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 
 @Entity(name = "dadosbancarios")
@@ -22,6 +23,7 @@ public class DadosBancarios extends Listagem {
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "banco_id")
     private Banco banco;

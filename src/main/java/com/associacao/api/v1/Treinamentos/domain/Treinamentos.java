@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public class Treinamentos extends Listagem {
     /**
      * Tipo de aprendizado do treinamento (presencial, híbrido, remoto).
      */
+    @NotAudited
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_aprendizado")
     private TipoAprendizado tipoAprendizado;
@@ -51,6 +53,7 @@ public class Treinamentos extends Listagem {
      * Lista de cursos realizados no treinamento.
      */
     @ManyToMany
+    @NotAudited
     @JoinTable(
             name = "treinamento_treinamento_curso",
             joinColumns = @JoinColumn(name = "treinamento_id"),

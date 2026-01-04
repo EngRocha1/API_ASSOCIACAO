@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 /**
  * Representa as informações sensíveis de um servidor, abrangendo dados de diversidade e inclusão.
@@ -26,6 +27,7 @@ public class InformacoesSensiveis extends Auditable {
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "genero_id")
     private Genero genero;
@@ -33,22 +35,27 @@ public class InformacoesSensiveis extends Auditable {
     @Column(name = "nome_social")
     private String nomeSocial;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "estado_civil_id")
     private EstadoCivil estadoCivil;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "raca_etnia_id")
     private RacaEtnia racaEtnia;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "orientacao_sexual_id")
     private OrientacaoSexual orientacaoSexual;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "expressao_degenero_id")
     private ExpressaoDegenero expressaoDegenero;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "pronome_preferido_id")
     private PronomePreferido pronomePreferido;
@@ -57,6 +64,7 @@ public class InformacoesSensiveis extends Auditable {
     @Column(name = "possui_deficiencia")
     private SimOuNao possuiDeficiencia;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "deficiencias_id")
     private Deficiencias deficiencias;
@@ -65,6 +73,7 @@ public class InformacoesSensiveis extends Auditable {
     @Column(name = "faz_uso_cordao")
     private SimOuNao fazUsoCordao;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "cordao_id")
     private Cordao cordao;
@@ -73,6 +82,7 @@ public class InformacoesSensiveis extends Auditable {
     @Column(name = "possui_doenca_cronica_rara")
     private SimOuNao possuiDoencaCronicaRara;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "doencas_cronicas_raras_id")
     private DoencasCronicasRaras doencasCronicasRaras;
@@ -81,18 +91,22 @@ public class InformacoesSensiveis extends Auditable {
     @Column(name = "eh_neurodivergente")
     private SimOuNao ehNeurodivergente;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "neurodiversidade_id")
     private Neurodiversidade neurodiversidade;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "geracao_id")
     private Geracao geracao;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "corpele_id")
     private CorPele corPele;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "nacionalidade_id")
     private Nacionalidade nacionalidade;

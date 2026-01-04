@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.time.LocalDate;
 
@@ -27,22 +28,27 @@ import java.time.LocalDate;
 @SQLRestriction(value = "ativo = true")
 public class Afastamentos extends Listagem {
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
+    @NotAudited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cid_id", nullable = true)
     private CID cid;
 
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fluxo_id", nullable = false)
     private FluxoAprovacao fluxo;
 
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoafastamento_id", nullable = false)
     private TipoAfastamento tipoafastamento;
 
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "suspensao_id", nullable = true)
     private Suspensao suspensao;

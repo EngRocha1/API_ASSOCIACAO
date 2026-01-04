@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 @Entity(name = "informacoes_assentamento")
 @Table(name = "informacoes_assentamento")
@@ -24,22 +25,27 @@ public class InformacoesAssentamento extends Listagem {
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "lotacao_id")
     private Lotacao lotacao;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "orgaogov_id")
     private OrgaoGov orgaogov;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "superintendencia_id")
     private Superintendencia superintendencia;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "diretoria_id")
     private Diretoria diretoria;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "diariooficial_id")
     private DiarioOficial diariooficial;

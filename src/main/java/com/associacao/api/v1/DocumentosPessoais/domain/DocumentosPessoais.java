@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.time.LocalDate;
 
@@ -25,6 +26,7 @@ public class DocumentosPessoais extends Listagem {
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
+    @NotAudited
     @ManyToOne
     @JoinColumn(name = "tipodedocumento_id")
     private TipoDeDocumento tipoDeDocumento;
