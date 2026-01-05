@@ -39,7 +39,7 @@ public class SecurityConfigurations {
                                         "/swagger-ui/**",
                                         "/swagger-ui.html",
                                         "/webjars/**",
-                                        "/**/swagger-initializer.js",
+                                        "/swagger-ui/swagger-initializer.js",
                                         "/v3/api-docs/swagger-config"
                                 ).permitAll()
                         .requestMatchers(HttpMethod.GET, "/protected/route").authenticated()
