@@ -106,8 +106,7 @@ public class SpringDocConfig {
                 .group("auditoria")
                 .displayName("3 - Auditoria e Admin")
                 .pathsToMatch(
-                        "/auth/register",
-                        "/auth/list",
+                        "/auth/**",
                         "/v1/audit/**",
                         "/informacoessensiveis/**",
                         "/genero/**",
