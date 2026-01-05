@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-
 @SQLDelete(sql = "UPDATE deficiencias SET ativo = false WHERE id = ?")
 @Where(clause = "ativo = true")
 @RequestMapping("/deficiencias")

@@ -3,6 +3,7 @@ package com.associacao.api.v1.Audit.controller;
 import com.associacao.api.v1.Audit.domain.CustomRevisionEntity;
 import com.associacao.api.v1.Audit.service.AuditService;
 import com.associacao.api.v1.Servidor.domain.Servidor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/v1/audit")
+@Tag(name = "Auditoria",
+        description = "Endpoints para rastreamento de alteracoes, revisoes por usuario, IP e histórico de dados.")
 public class AuditController {
 
     @Autowired

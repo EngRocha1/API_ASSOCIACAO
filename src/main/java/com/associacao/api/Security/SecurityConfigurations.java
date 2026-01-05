@@ -53,10 +53,6 @@ public class SecurityConfigurations {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-//    @Bean
-//    public ForwardedHeaderFilter forwardedHeaderFilter() {
-//        return new ForwardedHeaderFilter();
-//    } RETIRADO POIS O PROPERTIES JÁ TEM UMA PROPRIEDADE NATIVE FUNCIONANDO PODE GERAR REDUNDÂNCIA
 
     @Bean
     public PasswordEncoder passwordEncoder() {
