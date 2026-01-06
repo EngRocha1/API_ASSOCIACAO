@@ -94,7 +94,7 @@ public class InformacoesAssentamentoController
     protected InformacoesAssentamento toEntity(InformacoesAssentamentoResponseDTO dto) {
         Servidor servidor = servidorService.validarId(dto.getServidorId());
         Lotacao lotacao = lotacaoService.validarId(dto.getLotacaoId());
-        AtoMovimentacao atoMovimentacao = atoMovimentacaoService.validarId(dto.getAtomvimentacaoId());
+        AtoMovimentacao atoMovimentacao = atoMovimentacaoService.validarId(dto.getAtomovimentacaoId());
         Superintendencia superintendencia = superintendenciaService.validarId(dto.getSuperintendenciaId());
         OrgaoGov orgaoGov = orgaoGovService.validarId(dto.getOrgaogovId());
         Diretoria diretoria = diretoriaService.validarId(dto.getDiretoriaId());
@@ -120,13 +120,13 @@ public class InformacoesAssentamentoController
                 .lotacaoId(entity.getLotacao().getId())
                 .lotacaoNome(entity.getLotacao().getName())
                 .lotacaoDescricao(entity.getLotacao().getDescricao())
-                .atomvimentacaoId(entity.getAtomvimentacao().getId())
-                .atomvimentacaoNome(entity.getAtomvimentacao().getName())
-                .atomvimentacaoDescricao(entity.getAtomvimentacao().getDescricao())
-                .atomvimentacaoVinculo(entity.getAtomvimentacao().getVinculo().toString())
-                .atomvimentacaoSimbolo(entity.getAtomvimentacao().getSimbolo().toString())
-                .atomvimentacaoDataEfeito(entity.getAtomvimentacao().getDataEfeito().toString())
-                .atomvimentacaoDiarioOficial(entity.getAtomvimentacao().getDiariooficial().toString())
+                .atomovimentacaoId(entity.getAtomovimentacao().getId())
+                .atomovimentacaoNome(entity.getAtomovimentacao().getName())
+                .atomovimentacaoDescricao(entity.getAtomovimentacao().getDescricao())
+                .atomovimentacaoVinculo(entity.getAtomovimentacao().getVinculo().toString())
+                .atomovimentacaoSimbolo(entity.getAtomovimentacao().getSimbolo().toString())
+                .atomovimentacaoDataEfeito(entity.getAtomovimentacao().getDataEfeito().toString())
+                .atomovimentacaoDiarioOficial(entity.getAtomovimentacao().getDiariooficial().toString())
                 .superintendenciaId(entity.getSuperintendencia().getId())
                 .superintendenciaNome(entity.getSuperintendencia().getName())
                 .superintendenciaDescricao(entity.getSuperintendencia().getDescricao())

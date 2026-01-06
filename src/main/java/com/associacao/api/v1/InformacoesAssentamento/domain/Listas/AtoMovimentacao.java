@@ -12,8 +12,8 @@ import org.hibernate.proxy.HibernateProxy;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Table(name = "atomvimentacao")
-@Entity(name = "atomvimentacao")
+@Table(name = "atomovimentacao")
+@Entity(name = "atomovimentacao")
 @Getter
 @Setter
 @ToString

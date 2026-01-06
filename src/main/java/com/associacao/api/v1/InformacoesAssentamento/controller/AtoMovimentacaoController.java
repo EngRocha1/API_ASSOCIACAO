@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@SQLDelete(sql = "UPDATE atomvimentacao SET ativo = false WHERE id = ?")
+@SQLDelete(sql = "UPDATE atomovimentacao SET ativo = false WHERE id = ?")
 @Where(clause = "ativo = true")
-@RequestMapping("/atomvimentacao")
+@RequestMapping("/atomovimentacao")
 @Tag(name = "AtoMovimentacao",
         description = "Operações relacionadas ao gerenciamento e consulta dos Atos de Movimentação oferecidos, incluindo criação, atualização, listagem e exclusão.")
 

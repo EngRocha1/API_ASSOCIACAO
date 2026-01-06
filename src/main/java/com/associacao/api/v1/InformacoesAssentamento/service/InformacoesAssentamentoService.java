@@ -34,11 +34,11 @@ public class InformacoesAssentamentoService
     @Getter
     private final SuperintendenciaService superintendenciaService;
     @Getter
-    private final VinculoService vinculoService; // Embora não usado diretamente aqui, mantido para injeção se precisar
+    private final VinculoService vinculoService;
     @Getter
     private final LotacaoService lotacaoService;
     @Getter
-    private final OrgaoGovService orgaoGovService; // Adicionado para ser usado na atualização
+    private final OrgaoGovService orgaoGovService;
 
     @Autowired
     public InformacoesAssentamentoService(
@@ -49,7 +49,7 @@ public class InformacoesAssentamentoService
             SuperintendenciaService superintendenciaService,
             VinculoService vinculoService,
             LotacaoService lotacaoService,
-            OrgaoGovService orgaoGovService // Injetado
+            OrgaoGovService orgaoGovService
     ) {
         super(informacoesAssentamentoRepository);
         this.informacoesAssentamentoRepository = informacoesAssentamentoRepository;
@@ -59,17 +59,14 @@ public class InformacoesAssentamentoService
         this.superintendenciaService = superintendenciaService;
         this.vinculoService = vinculoService;
         this.lotacaoService = lotacaoService;
-        this.orgaoGovService = orgaoGovService; // Atribuído
+        this.orgaoGovService = orgaoGovService;
     }
 
     private void initializeLazyRelations(InformacoesAssentamento entity) {
         if (entity == null) return;
         logger.debug("Inicializando relacionamentos LAZY para InformacoesAssentamento com ID: {}", entity.getId());
-
-        // Inicialize apenas os objetos de relacionamento, não os campos primitivos.
-        // Campos primitivos como String não precisam de Hibernate.initialize()
         if (entity.getServidor() != null) Hibernate.initialize(entity.getServidor());
-        if (entity.getAtomvimentacao() != null) Hibernate.initialize(entity.getAtomvimentacao());
+        if (entity.getAtomovimentacao() != null) Hibernate.initialize(entity.getAtomovimentacao());
         if (entity.getDiretoria() != null) Hibernate.initialize(entity.getDiretoria());
         if (entity.getOrgaogov() != null) Hibernate.initialize(entity.getOrgaogov());
         if (entity.getLotacao() != null) Hibernate.initialize(entity.getLotacao());
@@ -107,8 +104,6 @@ public class InformacoesAssentamentoService
     public InformacoesAssentamento update(String id, InformacoesAssentamento informacoesAssentamento) {
         try {
             InformacoesAssentamento existingInformacoesAssentamento = validarId(id); // Garante que o assentamento existe e está ativo
-
-            // Log do estado antes da atualização para depuração
             logger.debug("InformacoesAssentamento existente (antes da atualização): {}", existingInformacoesAssentamento);
             logger.debug("Novas informações assentamento (do DTO): {}", informacoesAssentamento);
 
@@ -119,7 +114,6 @@ public class InformacoesAssentamentoService
             return updatedEntity;
 
         } catch (ResponseStatusException e) {
-            // Re-lança ResponseStatusException para ser tratada pelo Spring
             logger.error("Erro de status ao atualizar InformacoesAssentamento com ID {}: {}", id, e.getMessage());
             throw e;
         } catch (Exception e) {
@@ -182,11 +176,11 @@ public class InformacoesAssentamentoService
         }
 
         // Ato Movimentacao
-        if (newInformacoesAssentamento.getAtomvimentacao() != null && newInformacoesAssentamento.getAtomvimentacao().getId() != null) {
-            AtoMovimentacao atoMovimentacao = atoMovimentacaoService.validarId(newInformacoesAssentamento.getAtomvimentacao().getId());
-            existingInformacoesAssentamento.setAtomvimentacao(atoMovimentacao);
-        } else if (newInformacoesAssentamento.getAtomvimentacao() != null && newInformacoesAssentamento.getAtomvimentacao().getId() == null) {
-            existingInformacoesAssentamento.setAtomvimentacao(null);
+        if (newInformacoesAssentamento.getAtomovimentacao() != null && newInformacoesAssentamento.getAtomovimentacao().getId() != null) {
+            AtoMovimentacao atoMovimentacao = atoMovimentacaoService.validarId(newInformacoesAssentamento.getAtomovimentacao().getId());
+            existingInformacoesAssentamento.setAtomovimentacao(atoMovimentacao);
+        } else if (newInformacoesAssentamento.getAtomovimentacao() != null && newInformacoesAssentamento.getAtomovimentacao().getId() == null) {
+            existingInformacoesAssentamento.setAtomovimentacao(null);
         }
     }
 
