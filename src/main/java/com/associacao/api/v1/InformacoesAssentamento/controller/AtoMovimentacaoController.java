@@ -19,7 +19,7 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE atomvimentacao SET ativo = false WHERE id = ?")
 @Where(clause = "ativo = true")
 @RequestMapping("/atomvimentacao")
-@Tag(name = "Ato Movimentação",
+@Tag(name = "AtoMovimentacao",
         description = "Operações relacionadas ao gerenciamento e consulta dos Atos de Movimentação oferecidos, incluindo criação, atualização, listagem e exclusão.")
 
 public class AtoMovimentacaoController extends AbstractController<AtoMovimentacao, AtoMovimentacaoResponseDTO> {
