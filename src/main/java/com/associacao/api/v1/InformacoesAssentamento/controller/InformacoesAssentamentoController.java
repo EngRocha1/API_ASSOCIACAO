@@ -39,7 +39,7 @@ public class InformacoesAssentamentoController
     private final InformacoesAssentamentoService informacoesAssentamentoService;
     private final ServidorService servidorService;
     private final LotacaoService lotacaoService;
-    private final DiarioOficialService diarioOficialService;
+    private final AtoMovimentacaoService atoMovimentacaoService;
     private final OrgaoGovService orgaoGovService;
     private final SuperintendenciaService superintendenciaService;
     private final DiretoriaService diretoriaService;
@@ -51,14 +51,14 @@ public class InformacoesAssentamentoController
             ServidorService servidorService,
             LotacaoService lotacaoService,
             OrgaoGovService orgaoGovService,
-            DiarioOficialService diarioOficialService,
+            AtoMovimentacaoService atoMovimentacaoService,
             SuperintendenciaService superintendenciaService,
             DiretoriaService diretoriaService
     ) {
         this.informacoesAssentamentoService = informacoesAssentamentoService;
         this.servidorService = servidorService;
         this.lotacaoService = lotacaoService;
-        this.diarioOficialService = diarioOficialService;
+        this.atoMovimentacaoService = atoMovimentacaoService;
         this.orgaoGovService = orgaoGovService;
         this.superintendenciaService = superintendenciaService;
         this.diretoriaService = diretoriaService;
@@ -94,7 +94,7 @@ public class InformacoesAssentamentoController
     protected InformacoesAssentamento toEntity(InformacoesAssentamentoResponseDTO dto) {
         Servidor servidor = servidorService.validarId(dto.getServidorId());
         Lotacao lotacao = lotacaoService.validarId(dto.getLotacaoId());
-        DiarioOficial diarioOficial = diarioOficialService.validarId(dto.getDiariooficialId());
+        AtoMovimentacao atoMovimentacao = atoMovimentacaoService.validarId(dto.getAtomvimentacaoId());
         Superintendencia superintendencia = superintendenciaService.validarId(dto.getSuperintendenciaId());
         OrgaoGov orgaoGov = orgaoGovService.validarId(dto.getOrgaogovId());
         Diretoria diretoria = diretoriaService.validarId(dto.getDiretoriaId());
@@ -102,7 +102,7 @@ public class InformacoesAssentamentoController
         return new InformacoesAssentamento(
                 servidor,
                 lotacao,
-                diarioOficial,
+                atoMovimentacao,
                 superintendencia,
                 orgaoGov,
                 diretoria,
@@ -120,13 +120,13 @@ public class InformacoesAssentamentoController
                 .lotacaoId(entity.getLotacao().getId())
                 .lotacaoNome(entity.getLotacao().getName())
                 .lotacaoDescricao(entity.getLotacao().getDescricao())
-                .diariooficialId(entity.getDiariooficial().getId())
-                .diariooficialNome(entity.getDiariooficial().getName())
-                .diariooficialDescricao(entity.getDiariooficial().getDescricao())
-                .diariooficialVinculo(entity.getDiariooficial().getVinculo().toString())
-                .diariooficialSimbolo(entity.getDiariooficial().getSimbolo().toString())
-                .diariooficialDataEfeito(entity.getDiariooficial().getDataEfeito().toString())
-                .diariooficialDataPublicacao(entity.getDiariooficial().getDataPublicacao().toString())
+                .atomvimentacaoId(entity.getAtomvimentacao().getId())
+                .atomvimentacaoNome(entity.getAtomvimentacao().getName())
+                .atomvimentacaoDescricao(entity.getAtomvimentacao().getDescricao())
+                .atomvimentacaoVinculo(entity.getAtomvimentacao().getVinculo().toString())
+                .atomvimentacaoSimbolo(entity.getAtomvimentacao().getSimbolo().toString())
+                .atomvimentacaoDataEfeito(entity.getAtomvimentacao().getDataEfeito().toString())
+                .atomvimentacaoDiarioOficial(entity.getAtomvimentacao().getDiariooficial().toString())
                 .superintendenciaId(entity.getSuperintendencia().getId())
                 .superintendenciaNome(entity.getSuperintendencia().getName())
                 .superintendenciaDescricao(entity.getSuperintendencia().getDescricao())

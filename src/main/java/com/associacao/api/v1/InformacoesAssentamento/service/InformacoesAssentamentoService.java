@@ -28,7 +28,7 @@ public class InformacoesAssentamentoService
     @Getter
     private final ServidorService servidorService;
     @Getter
-    private final DiarioOficialService diarioOficialService;
+    private final AtoMovimentacaoService atoMovimentacaoService;
     @Getter
     private final DiretoriaService diretoriaService;
     @Getter
@@ -44,7 +44,7 @@ public class InformacoesAssentamentoService
     public InformacoesAssentamentoService(
             InformacoesAssentamentoRepository informacoesAssentamentoRepository,
             ServidorService servidorService,
-            DiarioOficialService diarioOficialService,
+            AtoMovimentacaoService atoMovimentacaoService,
             DiretoriaService diretoriaService,
             SuperintendenciaService superintendenciaService,
             VinculoService vinculoService,
@@ -54,7 +54,7 @@ public class InformacoesAssentamentoService
         super(informacoesAssentamentoRepository);
         this.informacoesAssentamentoRepository = informacoesAssentamentoRepository;
         this.servidorService = servidorService;
-        this.diarioOficialService = diarioOficialService;
+        this.atoMovimentacaoService = atoMovimentacaoService;
         this.diretoriaService = diretoriaService;
         this.superintendenciaService = superintendenciaService;
         this.vinculoService = vinculoService;
@@ -69,7 +69,7 @@ public class InformacoesAssentamentoService
         // Inicialize apenas os objetos de relacionamento, não os campos primitivos.
         // Campos primitivos como String não precisam de Hibernate.initialize()
         if (entity.getServidor() != null) Hibernate.initialize(entity.getServidor());
-        if (entity.getDiariooficial() != null) Hibernate.initialize(entity.getDiariooficial());
+        if (entity.getAtomvimentacao() != null) Hibernate.initialize(entity.getAtomvimentacao());
         if (entity.getDiretoria() != null) Hibernate.initialize(entity.getDiretoria());
         if (entity.getOrgaogov() != null) Hibernate.initialize(entity.getOrgaogov());
         if (entity.getLotacao() != null) Hibernate.initialize(entity.getLotacao());
@@ -130,23 +130,17 @@ public class InformacoesAssentamentoService
 
     @Transactional
     public void updateEntityFields(InformacoesAssentamento existingInformacoesAssentamento, InformacoesAssentamento newInformacoesAssentamento) {
-        // Atualiza campos primitivos/diretos
+
         if (newInformacoesAssentamento.getMatriculaInstitucional() != null) {
             existingInformacoesAssentamento.setMatriculaInstitucional(newInformacoesAssentamento.getMatriculaInstitucional());
         }
         if (newInformacoesAssentamento.getEmailInstitucionalGov() != null) {
             existingInformacoesAssentamento.setEmailInstitucionalGov(newInformacoesAssentamento.getEmailInstitucionalGov());
         }
-        // O campo 'ativo' é booleano, e deve ser comparado se o DTO de entrada realmente o mudou
-        // Geralmente, o frontend envia 'ativo: true', então esta linha pode não ser acionada a menos que haja uma desativação via frontend.
+
         if (newInformacoesAssentamento.isAtivo() != existingInformacoesAssentamento.isAtivo()) {
             existingInformacoesAssentamento.setAtivo(newInformacoesAssentamento.isAtivo());
         }
-
-        // --- ATUALIZAÇÃO DOS RELACIONAMENTOS @ManyToOne ---
-        // Para cada relacionamento, carregue a entidade referenciada pelo ID
-        // e atribua-a à entidade existente.
-        // A validação de ID (existência e ativo=true) deve ser feita pelos respectivos services.
 
         // Servidor
         if (newInformacoesAssentamento.getServidor() != null && newInformacoesAssentamento.getServidor().getId() != null) {
@@ -187,12 +181,12 @@ public class InformacoesAssentamentoService
             existingInformacoesAssentamento.setDiretoria(null);
         }
 
-        // Diário Oficial
-        if (newInformacoesAssentamento.getDiariooficial() != null && newInformacoesAssentamento.getDiariooficial().getId() != null) {
-            DiarioOficial diarioOficial = diarioOficialService.validarId(newInformacoesAssentamento.getDiariooficial().getId());
-            existingInformacoesAssentamento.setDiariooficial(diarioOficial);
-        } else if (newInformacoesAssentamento.getDiariooficial() != null && newInformacoesAssentamento.getDiariooficial().getId() == null) {
-            existingInformacoesAssentamento.setDiariooficial(null);
+        // Ato Movimentacao
+        if (newInformacoesAssentamento.getAtomvimentacao() != null && newInformacoesAssentamento.getAtomvimentacao().getId() != null) {
+            AtoMovimentacao atoMovimentacao = atoMovimentacaoService.validarId(newInformacoesAssentamento.getAtomvimentacao().getId());
+            existingInformacoesAssentamento.setAtomvimentacao(atoMovimentacao);
+        } else if (newInformacoesAssentamento.getAtomvimentacao() != null && newInformacoesAssentamento.getAtomvimentacao().getId() == null) {
+            existingInformacoesAssentamento.setAtomvimentacao(null);
         }
     }
 

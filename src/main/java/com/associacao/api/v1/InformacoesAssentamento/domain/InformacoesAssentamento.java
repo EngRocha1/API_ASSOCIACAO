@@ -47,8 +47,8 @@ public class InformacoesAssentamento extends Listagem {
 
     @NotAudited
     @ManyToOne
-    @JoinColumn(name = "diariooficial_id")
-    private DiarioOficial diariooficial;
+    @JoinColumn(name = "atomvimentacao_id")
+    private AtoMovimentacao atomvimentacao;
 
     private String matriculaInstitucional;
     private String emailInstitucionalGov;
@@ -57,7 +57,7 @@ public class InformacoesAssentamento extends Listagem {
     public InformacoesAssentamento(
             Servidor servidor,
             Lotacao lotacao,
-            DiarioOficial diariooficial,
+            AtoMovimentacao atomvimentacao,
             Superintendencia superintendencia,
             OrgaoGov orgaogov,
             Diretoria diretoria,
@@ -70,7 +70,7 @@ public class InformacoesAssentamento extends Listagem {
         this.orgaogov = orgaogov;
         this.superintendencia = superintendencia;
         this.diretoria = diretoria;
-        this.diariooficial = diariooficial;
+        this.atomvimentacao = atomvimentacao;
         this.lotacao = lotacao;
         this.servidor = servidor;
         this.setAtivo(ativo);

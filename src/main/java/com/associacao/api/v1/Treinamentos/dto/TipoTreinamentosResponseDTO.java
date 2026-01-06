@@ -1,24 +1,19 @@
-package com.associacao.api.v1.InformacoesAssentamento.dto;
+package com.associacao.api.v1.Treinamentos.dto;
 
 import com.associacao.api.v1.SuperClasses.classes.Auditable;
 import com.associacao.api.v1.SuperClasses.dto.BaseDTO;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import java.time.LocalDate;
-
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper=true)
-public class DiarioOficialResponseDTO extends Auditable implements BaseDTO {
+public class TipoTreinamentosResponseDTO extends Auditable implements BaseDTO {
     private String id;
 
     @NotBlank
     private String name;
     private boolean ativo;
-    private LocalDate dataPublicacao;
 }

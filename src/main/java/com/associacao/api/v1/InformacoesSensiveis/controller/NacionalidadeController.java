@@ -22,7 +22,7 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE nacionalidades SET ativo = false WHERE id = ?")
 @Where(clause = "ativo = true")
 @RequestMapping("/nacionalidades")
-@Tag(name = "Nacionalidades", description = "Operações relacionadas ao gerenciamento  e consulta de nacionalidades, incluindo criação, atualização, listagem e exclusão.")
+@Tag(name = "Nacionalidade", description = "Operações relacionadas ao gerenciamento  e consulta de nacionalidades, incluindo criação, atualização, listagem e exclusão.")
 public class NacionalidadeController extends AbstractController<Nacionalidade, NacionalidadeResponseDTO> {
 
     private final NacionalidadeService nacionalidadeService;

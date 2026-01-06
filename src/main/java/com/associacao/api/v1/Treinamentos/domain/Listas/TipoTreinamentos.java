@@ -1,34 +1,32 @@
-package com.associacao.api.v1.InformacoesAssentamento.domain.Listas;
+package com.associacao.api.v1.Treinamentos.domain.Listas;
 
 import com.associacao.api.v1.SuperClasses.classes.Listagem;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
-@Table(name = "diariooficial")
-@Entity(name = "diariooficial")
+@Table(name="TipoTreinamentos")
+@Entity(name="TipoTreinamentos")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @SQLRestriction(value = "ativo = true")
-public class DiarioOficial extends Listagem {
+public class TipoTreinamentos extends Listagem {
 
-    private LocalDate dataPublicacao;
-
-    public DiarioOficial(String id, String name, boolean ativo, LocalDate dataPublicacao) {
-        super.setId(null);
+    public TipoTreinamentos(
+            String id,
+            String name,
+            boolean ativo
+    )
+    {
+        super.setId(null); // O ID está sendo configurado como null para gerar um novo UUID
         super.setName(name);
         super.setAtivo(ativo);
-        this.dataPublicacao = dataPublicacao;
     }
 
     @Override
@@ -38,8 +36,8 @@ public class DiarioOficial extends Listagem {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        DiarioOficial diariooficial = (DiarioOficial) o;
-        return getId() != null && Objects.equals(getId(), diariooficial.getId());
+        TipoTreinamentos that = (TipoTreinamentos) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override

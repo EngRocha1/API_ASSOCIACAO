@@ -57,18 +57,47 @@ public class SpringDocConfig {
     }
 
     @Bean
-    public GroupedOpenApi operationalApi() {
+    public GroupedOpenApi operationalApi1() {
         return GroupedOpenApi.builder()
                 .group("gestao")
                 .displayName("2 - Gestão Operacional")
                 .pathsToMatch(
                         "/servidor/**",
-                        "/file/**",
+                        "/file/**"
+                        )
+                .build();
+    }
+    @Bean
+    public GroupedOpenApi operationalApi2() {
+        return GroupedOpenApi.builder()
+                .group("documentos")
+                .displayName("3 - Documentos Pessoais")
+                .pathsToMatch(
                         "/documentospessoais/**",
-                        "/tipodedocumento/**",
+                        "/tipodedocumento/**"
+                        )
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi operationalApi3() {
+        return GroupedOpenApi.builder()
+                .group("bancarios")
+                .displayName("4 - Dados Bancários")
+                .pathsToMatch(
                         "/dadosbancarios/**",
-                        "/banco/**",
+                        "/banco/**"
+                        )
+                .build();
+    }
+    @Bean
+    public GroupedOpenApi operationalApi4() {
+        return GroupedOpenApi.builder()
+                .group("assentamentos")
+                .displayName("5 - Assentamentos")
+                .pathsToMatch(
                         "/informacoesassentamento/**",
+                        "/atomovimentacao/**",
                         "/diariooficial/**",
                         "/superintendencia/**",
                         "/diretoria/**",
@@ -76,17 +105,45 @@ public class SpringDocConfig {
                         "/orgaogov/**",
                         "/simbolo/**",
                         "/vinculo/**",
+                        "/cargo/**"
+                        )
+                .build();
+    }
 
-                        // --- Módulos Adicionais (Preservados) ---
+    @Bean
+    public GroupedOpenApi operationalApi5() {
+        return GroupedOpenApi.builder()
+                .group("treinamentos")
+                .displayName("6 - Treinamentos")
+                .pathsToMatch(
                         "/treinamentos/**",
                         "/tipotreinamentos/**",
                         "/treinamentocurso/**",
-                        "/grupo-do-curso/**",
+                        "/grupo-do-curso/**"
+                        )
+                .build();
+    }
+    @Bean
+    public GroupedOpenApi operationalApi6() {
+        return GroupedOpenApi.builder()
+                .group("afastamentos")
+                .displayName("7 - Afastamentos")
+                .pathsToMatch(
                         "/afastamentos/**",
                         "/tipoafastamento/**",
                         "/fluxoaprovacao/**",
                         "/suspensao/**",
-                        "/cid/**",
+                        "/cid/**"
+                        )
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi operationalApi7() {
+        return GroupedOpenApi.builder()
+                .group("escolares")
+                .displayName("8 - Dados Escolares")
+                .pathsToMatch(
                         "/informacoesescolares/**",
                         "/curso/**",
                         "/formacaoacademica/**",
@@ -101,13 +158,11 @@ public class SpringDocConfig {
     }
 
     @Bean
-    public GroupedOpenApi adminApi() {
+    public GroupedOpenApi operationalApi8() {
         return GroupedOpenApi.builder()
-                .group("auditoria")
-                .displayName("3 - Auditoria e Admin")
+                .group("sensiveis")
+                .displayName("9 - Dados Sensiveis")
                 .pathsToMatch(
-                        "/auth/**",
-                        "/v1/audit/**",
                         "/informacoessensiveis/**",
                         "/genero/**",
                         "/expressaodegenero/**",
@@ -122,6 +177,18 @@ public class SpringDocConfig {
                         "/geracoes/**",
                         "/doencascronicasraras/**",
                         "/corpele/**"
+                )
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi adminApi() {
+        return GroupedOpenApi.builder()
+                .group("auditoria")
+                .displayName("3 - Auditoria e Admin")
+                .pathsToMatch(
+                        "/auth/**",
+                        "/v1/audit/**"
                 )
                 .build();
     }
