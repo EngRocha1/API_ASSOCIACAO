@@ -20,7 +20,6 @@ import org.hibernate.envers.NotAudited;
 @SQLRestriction(value = "ativo = true")
 public class InformacoesAssentamento extends Listagem {
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;

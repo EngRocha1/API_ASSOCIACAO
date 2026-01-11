@@ -33,8 +33,6 @@ build/
 
 ### Docker ###
 .dockerignore
-2004103007
-2004103007.pub
 
 ### Arquivos de ambiente ###
 teste
@@ -42,9 +40,6 @@ teste
 ### Arquivos de log ###
 *.log
 
-### Arquivos de configuração específicos do ambiente ###
-application-*.properties
-!application.properties.example
 
 ### Arquivos temporários ###
 *~
